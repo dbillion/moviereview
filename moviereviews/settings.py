@@ -1,5 +1,7 @@
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
 
 """
 Django settings for moviereviews project.
@@ -25,12 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = "django-insecure-z)4v$^)_kp*1c7)=j4=tlja#4#a0c**^dp+)&&c)%q!svajpcv"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+
+ALLOWED_HOSTS = ['.vercel.app','now.sh','127.0.0.1','localhost']
 
 
 # Application definition
@@ -82,10 +85,20 @@ WSGI_APPLICATION = "moviereviews.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
+    
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('PG_NAME'),
+        'USER': os.getenv('PG_USER') ,
+        'PASSWORD':str(os.getenv('PG_PASSWORD')),
+        'HOST': os.getenv('PG_PORT'),
+        'PORT':os.getenv('PG_HOST'),
     }
+    
 }
 
 
@@ -134,5 +147,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [
     BASE_DIR / "moviereviews/static/",
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 LOGIN_URL = 'loginaccount'
