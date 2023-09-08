@@ -90,13 +90,22 @@ DATABASES = {
     #     "NAME": BASE_DIR / "db.sqlite3",
     # }
     
-     'default': {
+    #  'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.getenv('PG_NAME'),
+    #     'USER': os.getenv('PG_USER') ,
+    #     'PASSWORD':str(os.getenv('PG_PASSWORD')),
+    #     'HOST': os.getenv('PG_PORT'),
+    #     'PORT':os.getenv('PG_HOST'),
+    # }
+    
+       'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('PG_NAME'),
-        'USER': os.getenv('PG_USER') ,
-        'PASSWORD':str(os.getenv('PG_PASSWORD')),
-        'HOST': os.getenv('PG_PORT'),
-        'PORT':os.getenv('PG_HOST'),
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': 'ysyTSDer6vDf5F41C6Xk',
+        'HOST': 'containers-us-west-122.railway.app',
+        'PORT': '6083',
     }
     
 }
